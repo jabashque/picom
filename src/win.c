@@ -883,6 +883,22 @@ static void win_determine_blur_background(session_t *ps, struct managed_win *w) 
 }
 
 /**
+ * Determine if a window should have rounded corners.
+ */
+static void win_determine_transparent_clipping(session_t *ps, struct managed_win *w) {
+	if (ps->o.transparent_clipping == false) {
+		w->transparent_clipping = false;
+		return;
+	}
+
+	w->transparent_clipping = true;
+	if (c2_match(ps, w, ps->o.transparent_clipping_blacklist, NULL)) {
+		log_debug("Transparent clipping disabled by transparent-clipping-exclude");
+		w->transparent_clipping = false;
+	}
+}
+
+/**
  * Update window opacity according to opacity rules.
  */
 void win_update_opacity_rule(session_t *ps, struct managed_win *w) {
@@ -916,6 +932,7 @@ void win_on_factor_change(session_t *ps, struct managed_win *w) {
 	win_determine_shadow(ps, w);
 	win_determine_invert_color(ps, w);
 	win_determine_blur_background(ps, w);
+	win_determine_transparent_clipping(ps, w);
 	w->mode = win_calc_mode(w);
 	log_debug("Window mode changed to %d", w->mode);
 	win_update_opacity_rule(ps, w);

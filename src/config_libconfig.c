@@ -504,6 +504,8 @@ char *parse_config_libconfig(options_t *opt, const char *config_file, bool *shad
 	parse_cfg_condlst(&cfg, &opt->invert_color_list, "invert-color-include");
 	// --blur-background-exclude
 	parse_cfg_condlst(&cfg, &opt->blur_background_blacklist, "blur-background-exclude");
+	// --transparent-clipping-exclude
+	parse_cfg_condlst(&cfg, &opt->transparent_clipping_blacklist, "transparent-clipping-exclude");
 	// --opacity-rule
 	parse_cfg_condlst_opct(opt, &cfg, "opacity-rule");
 	// --unredir-if-possible-exclude

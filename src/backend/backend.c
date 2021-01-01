@@ -253,7 +253,7 @@ void paint_all_new(session_t *ps, struct managed_win *t, bool ignore_damage) {
 				pixman_region32_translate(&reg_blur, w->g.x, w->g.y);
 				// make sure reg_blur \in reg_paint
 				pixman_region32_intersect(&reg_blur, &reg_blur, &reg_paint);
-				if (ps->o.transparent_clipping) {
+				if (w->transparent_clipping) {
 					// ref: <transparent-clipping-note>
 					pixman_region32_intersect(&reg_blur, &reg_blur,
 					                          &reg_visible);
@@ -296,7 +296,7 @@ void paint_all_new(session_t *ps, struct managed_win *t, bool ignore_damage) {
 				    &ps->xinerama_scr_regs[w->xinerama_scr]);
 			}
 
-			if (ps->o.transparent_clipping) {
+			if (w->transparent_clipping) {
 				// ref: <transparent-clipping-note>
 				pixman_region32_intersect(&reg_shadow, &reg_shadow,
 				                          &reg_visible);

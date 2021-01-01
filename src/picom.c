@@ -744,7 +744,7 @@ static struct managed_win *paint_preprocess(session_t *ps, bool *fade_running) {
 		// we add the window region to the ignored region
 		// Otherwise last_reg_ignore shouldn't change
 		if ((w->mode != WMODE_TRANS && !ps->o.force_win_blend) ||
-		    ps->o.transparent_clipping) {
+		    w->transparent_clipping) {
 			// w->mode == WMODE_SOLID or WMODE_FRAME_TRANS
 			region_t *tmp = rc_region_new();
 			if (w->mode == WMODE_SOLID) {

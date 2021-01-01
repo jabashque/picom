@@ -560,6 +560,7 @@ char *parse_config(options_t *opt, const char *config_file, bool *shadow_enable,
 	    .no_ewmh_fullscreen = false,
 
 	    .track_leader = false,
+	    .transparent_clipping_blacklist = NULL
 	};
 
 	char *ret = NULL;

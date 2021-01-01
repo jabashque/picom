@@ -252,6 +252,9 @@ struct managed_win {
 	/// Textures and FBO background blur use.
 	glx_blur_cache_t glx_blur_cache;
 #endif
+
+	/// Whether to allow transparent clipping
+	bool transparent_clipping;
 };
 
 /// Process pending updates/images flags on a window. Has to be called in X critical
